@@ -7,16 +7,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import * as firebase from 'firebase';
 
-var config = {
-    apiKey: "AIzaSyBwLHayQR4UuwdXxXlaCF9_CNV_m9WY1sw",
-    authDomain: "howard-green-ent.firebaseapp.com",
-    databaseURL: "https://howard-green-ent.firebaseio.com",
-    projectId: "howard-green-ent",
-    storageBucket: "howard-green-ent.appspot.com",
-    messagingSenderId: "702902252490",
-    appId: "1:702902252490:web:025456fdc35a0fb3789533",
-    measurementId: "G-BN5EMZQCT6"
-};
+
 
 firebase.initializeApp(config);
 firebase.analytics();
