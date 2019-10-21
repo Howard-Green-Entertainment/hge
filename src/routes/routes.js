@@ -14,7 +14,7 @@ export const routes = {
         linkTo: () => '/upload'
     },
     CLIENT_DETAIL: {
-        path: '/:clientId',
+        path: 'clients/:clientId',
         component: ClientDetail,
         linkTo: clientId => `/${clientId}`
     }

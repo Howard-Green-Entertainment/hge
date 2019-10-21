@@ -5,6 +5,7 @@ import Header from './components/global/Header';
 import Footer from './components/global/Footer';
 import ClientInfoUpload from './pages/ClientInfoUpload';
 import ClientDetail from './pages/ClientDetail';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,9 +18,9 @@ function App() {
       <Header />
       <Router>
         <Switch>
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/clients/:clientId" component={ClientDetail} />
           <Route exact path="/upload" component={ClientInfoUpload} />
-          <Route exact path="/:clientId" route={ClientDetail} />
+          <Route exact path="/" component={Landing} />
         </Switch>
       </Router>
       <Footer />

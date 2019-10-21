@@ -1,11 +1,8 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import testImg from '../logo.svg';
-import { connect } from 'react-redux';
-import { getAllClients } from '../selectors/client-selectors';
 
 
-class ClientDetail extends PureComponent {
-    render() {
+export default function ClientDetail() {
         return (
             <>
                 <section className="client-detail">
@@ -32,14 +29,4 @@ class ClientDetail extends PureComponent {
     
             </>
         )
-    }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        clients: getAllClients(state)
-    }
-}
-
-
-export default connect(mapStateToProps)(ClientDetail);
