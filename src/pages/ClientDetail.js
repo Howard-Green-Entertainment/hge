@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import testImg from '../logo.svg';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getClientById } from '../selectors/client-selectors';
 
-
-export default function ClientDetail() {
+class ClientDetail extends PureComponent {
+    static propTypes = {
+        client: PropTypes.object.isRequired
+    }
+    render() {
+        const { name, bio } = this.props.client;
         return (
             <>
                 <section className="client-detail">
                     <img src={testImg} alt="client headshot" />
                     <section className="client-info">
-                        <h1>Client Name</h1>
-                        <p>This is the client bio area lorem ipsum</p>
+                        <h1>{name}</h1>
+                        <p>{bio}</p>
                         <ul>
                             <li>External link 1</li>
                             <li>External link 2</li>
@@ -26,7 +33,14 @@ export default function ClientDetail() {
                         </ul>
                     </section>
                 </section>
-    
             </>
         )
+
+    }
 }
+
+const mapStateToProps = (state, props) => ({
+    client: getClientById(state, props.match.params.clientId)
+})
+
+export default connect(mapStateToProps)(ClientDetail);
