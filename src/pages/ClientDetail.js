@@ -3,6 +3,7 @@ import testImg from '../logo.svg';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getClientById } from '../selectors/client-selectors';
+import { Link } from 'react-router-dom';
 
 class ClientDetail extends PureComponent {
     static propTypes = {
@@ -13,6 +14,7 @@ class ClientDetail extends PureComponent {
         return (
             <>
                 <section className="client-detail">
+                    <Link to="/"><button>Back Home</button></Link>
                     <img src={testImg} alt="client headshot" />
                     <section className="client-info">
                         <h1>{name}</h1>
