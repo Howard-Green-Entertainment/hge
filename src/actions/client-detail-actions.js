@@ -3,6 +3,7 @@ export const DELETE_CLIENT = 'DELETE_CLIENT';
 
 export const createClient = (client) => {
     return (dispatch, getState) => {
+        //here we make the call to firebase
         dispatch({ type: 'CREATE_CLIENT', client });
     }
 };

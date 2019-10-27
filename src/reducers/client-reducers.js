@@ -10,7 +10,8 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_CLIENT:
-            return [...state, { name: action.payload.name, bio: action.payload.bio }];
+            return console.log('created client', action.client);
+
         case DELETE_CLIENT:
             return [
                 ...state.slice(0, action.payload),
