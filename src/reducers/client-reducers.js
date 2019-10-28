@@ -1,5 +1,4 @@
-import { CREATE_CLIENT, DELETE_CLIENT } from '../actions/client-detail-actions';
-import { stat } from 'fs';
+import { CREATE_CLIENT } from '../actions/client-detail-actions';
 
 const initialState = {
     clients: [
@@ -10,13 +9,14 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_CLIENT:
-            return console.log('created client', action.client);
-
-        case DELETE_CLIENT:
-            return [
-                ...state.slice(0, action.payload),
-                ...stat.slice(action.payload + 1)
-            ];
+            return state;
+        // case CREATE_CLIENT_ERROR:
+        //     return state;
+        // case DELETE_CLIENT:
+        //     return [
+        //         ...state.slice(0, action.payload),
+        //         ...state.slice(action.payload + 1)
+        //     ];
         default:
             return state;
     }

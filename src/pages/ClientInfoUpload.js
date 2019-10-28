@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 // import InfoUploadForm from '../components/info-upload-form/InfoUploadForm';
-import ClientList from '../components/info-upload-form/ClientList';
+// import ClientList from '../components/info-upload-form/ClientList';
 import { connect } from 'react-redux';
 import { getAllClients } from '../selectors/client-selectors';
 import PropTypes from 'prop-types';
@@ -24,13 +24,11 @@ class ClientInfoUpload extends PureComponent {
     
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('state', this.state);
         this.props.addNewClient(this.state);
     }
 
     render() {
         const { clients } = this.props;
-        console.log('clients', clients);
         return (
             <>
                 {/* <InfoUploadForm onChange={this.handleChange} onSubmit={this.handleSubmit} /> */}
@@ -48,7 +46,7 @@ class ClientInfoUpload extends PureComponent {
                     
                     <button>Submit</button>
             </form>
-                <ClientList clients={clients} />
+                {/* <ClientList clients={clients} /> */}
             </>
         )
     }
