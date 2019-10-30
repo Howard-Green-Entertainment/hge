@@ -3,11 +3,10 @@ import React, { PureComponent } from 'react';
 // import ClientList from '../components/info-upload-form/ClientList';
 // import { getAllClients } from '../selectors/client-selectors';
 import PropTypes from 'prop-types';
-// import { createClient } from '../actions/client-detail-actions';
+import { addClient } from '../actions/client-actions';
 export default class ClientInfoUpload extends PureComponent {
     static propTypes = {
         clients: PropTypes.array,
-        addNewClient: PropTypes.func.isRequired
     }
 
     state = {
@@ -23,7 +22,10 @@ export default class ClientInfoUpload extends PureComponent {
     
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addNewClient(this.state);
+        const client = this.state;
+        console.log('client', client);
+        addClient(client);
+        //adds new client to firestore
     }
 
     render() {

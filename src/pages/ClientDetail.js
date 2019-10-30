@@ -8,6 +8,9 @@ export default class ClientDetail extends PureComponent {
     static propTypes = {
         client: PropTypes.object.isRequired
     }
+
+    //get client by id from Firestore
+    
     render() {
         const { name, bio } = this.props.client;
         return (

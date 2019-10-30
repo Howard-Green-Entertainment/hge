@@ -12,7 +12,7 @@ const config = {
             measurementId: process.env.MEASUREMENT_IDa
         };
 
-firebase.initializeApp(config);
-firebase.firestore();
+export const app = firebase.initializeApp(config);
+export const firestore = firebase.firestore();
 
-export default firebase;
+// export default firebase;
