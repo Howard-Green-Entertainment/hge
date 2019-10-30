@@ -1,26 +1,24 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import testImg from '../logo.svg';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import { getClientById } from '../selectors/client-selectors';
 import { Link } from 'react-router-dom';
+import { getClient } from '../actions/client-actions';
 
-export default class ClientDetail extends PureComponent {
-    static propTypes = {
-        client: PropTypes.object.isRequired
-    }
+export default function ClientDetail({ match: { params: { clientId } }}) {
 
-    //get client by id from Firestore
-    
-    render() {
-        const { name, bio } = this.props.client;
+    const client = getClient(clientId);
+
+    client ? console.log('client detail', client.bio) : null;
+
         return (
             <>
                 <section className="client-detail">
                     <Link to="/"><button>Back Home</button></Link>
                     <img src={testImg} alt="client headshot" />
                     <section className="client-info">
-                        <h1>{name}</h1>
-                        <p>{bio}</p>
+                        <h1>{client.clientFirstName}</h1>
+                        <p>{client.bio}</p>
                         <ul>
                             <li>External link 1</li>
                             <li>External link 2</li>
@@ -39,6 +37,4 @@ export default class ClientDetail extends PureComponent {
                 </section>
             </>
         )
-
-    }
 }
