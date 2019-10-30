@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react';
 import testImg from '../logo.svg';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getClientById } from '../selectors/client-selectors';
+// import { getClientById } from '../selectors/client-selectors';
 import { Link } from 'react-router-dom';
 
-class ClientDetail extends PureComponent {
+export default class ClientDetail extends PureComponent {
     static propTypes = {
         client: PropTypes.object.isRequired
     }
@@ -40,9 +39,3 @@ class ClientDetail extends PureComponent {
 
     }
 }
-
-const mapStateToProps = (state, props) => ({
-    client: getClientById(state, props.match.params.clientId)
-})
-
-export default connect(mapStateToProps)(ClientDetail);

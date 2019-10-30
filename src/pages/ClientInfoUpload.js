@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react';
 // import InfoUploadForm from '../components/info-upload-form/InfoUploadForm';
 // import ClientList from '../components/info-upload-form/ClientList';
-import { connect } from 'react-redux';
-import { getAllClients } from '../selectors/client-selectors';
+// import { getAllClients } from '../selectors/client-selectors';
 import PropTypes from 'prop-types';
-import { createClient } from '../actions/client-detail-actions';
-class ClientInfoUpload extends PureComponent {
+// import { createClient } from '../actions/client-detail-actions';
+export default class ClientInfoUpload extends PureComponent {
     static propTypes = {
         clients: PropTypes.array,
         addNewClient: PropTypes.func.isRequired
@@ -28,7 +27,7 @@ class ClientInfoUpload extends PureComponent {
     }
 
     render() {
-        const { clients } = this.props;
+        // const { clients } = this.props;
         return (
             <>
                 {/* <InfoUploadForm onChange={this.handleChange} onSubmit={this.handleSubmit} /> */}
@@ -51,15 +50,3 @@ class ClientInfoUpload extends PureComponent {
         )
     }
 }
-
-const mapStateToProps = (state) => ({
-    clients: getAllClients(state)
-});
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addNewClient: (client) => dispatch(createClient(client))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ClientInfoUpload);
