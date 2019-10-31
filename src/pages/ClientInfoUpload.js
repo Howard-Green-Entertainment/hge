@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { addClient } from '../actions/client-actions';
+import ImageUpload from '../components/media/ImageUpload';
 import VideoUpload from '../components/media/VideoUpload';
 import PdfUpload from '../components/media/PdfUpload';
 import { storage } from '../config/firebaseConfig';
@@ -84,6 +85,8 @@ export default class ClientInfoUpload extends PureComponent {
     }
 
     render() {
+        const { imgProgress } = this.state;
+        console.log('img progress form', imgProgress);
         return (
             <>
                 <form onSubmit={this.handleSubmit}>
@@ -95,11 +98,12 @@ export default class ClientInfoUpload extends PureComponent {
                     <input type="textarea" name="newLinkDescription" defaultValue="External link description" onChange={this.handleChange}></input>
                     <p onClick={this.handleLinkSubmit}>Add External Link</p>
 
-                    <div>
+                    {/* <div>
                         <progress value={this.state.imgProgress} max="100" />
                         <input name="newImage" type="file" onChange={this.handleMediaUploadChange}></input>
                         <button onClick={this.handleImageUpload}>Upload Image</button>
-                    </div>
+                    </div> */}
+                    <ImageUpload handleChange={this.handleImageUpload} handleUpload={this.handleImageUpload} progress={imgProgress} />
                     <VideoUpload />
                     <PdfUpload />
 
