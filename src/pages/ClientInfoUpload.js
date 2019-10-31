@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { addClient } from '../actions/client-actions';
-import FileUpload from '../components/media/FileUpload';
+import FileUpload from '../components/media/ImageUpload';
 export default class ClientInfoUpload extends PureComponent {
     static propTypes = {
         clients: PropTypes.array,

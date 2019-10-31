@@ -1,17 +1,17 @@
 import React, { PureComponent } from 'react';
 import { storage } from '../../config/firebaseConfig';
 
-export default class FileUpload extends PureComponent {
+export default class ImageUpload extends PureComponent {
 
     state = {
-        image: null,
+        video: null,
         url: ''    
     }
 
     handleChange = e => {
         if(e.target.files[0]) {
             this.setState({ 
-                image: e.target.files[0]
+                video: e.target.files[0]
             })
         }
     }
