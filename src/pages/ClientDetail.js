@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import testImg from '../logo.svg';
 // import PropTypes from 'prop-types';
 // import { getClientById } from '../selectors/client-selectors';
@@ -7,9 +7,16 @@ import { getClient } from '../actions/client-actions';
 
 export default function ClientDetail({ match: { params: { clientId } }}) {
 
-    const client = getClient(clientId);
-
-    client ? console.log('client detail', client.bio) : null;
+    let [client, setClient] = useState(null);
+    
+    useEffect(() => {
+        getClient(clientId)
+        .then(client => {
+            setClient(client)
+        })
+    }, [clientId]);
+    
+    if(!client) return ( <p>Loading...</p>)
 
         return (
             <>
