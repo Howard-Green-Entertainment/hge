@@ -1,6 +1,7 @@
 import Landing from '../pages/Landing';
 import ClientInfoUpload from '../pages/ClientInfoUpload';
 import ClientDetail from '../pages/ClientDetail';
+import ClientList from '../components/info-upload-form/ClientList';
 
 export const routes = {
     LANDING: {
@@ -17,5 +18,10 @@ export const routes = {
         path: 'clients/:clientId',
         component: ClientDetail,
         linkTo: clientId => `/${clientId}`
+    },
+    CLIENTS: {
+        path:'clients',
+        component: ClientList,
+        linkTo: () => '/clients'
     }
 };
