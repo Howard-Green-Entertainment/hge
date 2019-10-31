@@ -8,7 +8,7 @@ import { getClient } from '../actions/client-actions';
 export default function ClientDetail({ match: { params: { clientId } }}) {
 
     let [client, setClient] = useState(null);
-    
+
     useEffect(() => {
         getClient(clientId)
         .then(client => {
@@ -24,7 +24,7 @@ export default function ClientDetail({ match: { params: { clientId } }}) {
                     <Link to="/"><button>Back Home</button></Link>
                     <img src={testImg} alt="client headshot" />
                     <section className="client-info">
-                        <h1>{client.clientFirstName}</h1>
+                        <h1>{client.clientFirstName} {client.clientLastName}</h1>
                         <p>{client.bio}</p>
                         <ul>
                             <li>External link 1</li>

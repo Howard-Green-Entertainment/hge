@@ -8,18 +8,7 @@ export const getClient = async clientId => {
         return client.data();
     } catch(error) {
         console.log('client error', error);
-    }
-        // const client = clientsRef.doc(clientId).get()
-        // .then(client => {
-        //     if (client.exists) {
-        //         console.log('client action', client.data());
-        //         return client.data();
-        //     } else {
-        //         console.log('client doesnt exist'); 
-        //     }
-        // }).catch(error => {
-        //     console.log('failed to get client', error);
-        // }) 
+    } 
 }
 
 
