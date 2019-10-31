@@ -1,10 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { addClient } from '../actions/client-actions';
-import ImageUpload from '../components/media/ImageUpload';
-import VideoUpload from '../components/media/VideoUpload';
-import PdfUpload from '../components/media/PdfUpload';
-import { storage } from '../config/firebaseConfig';
+import { ImageUpload, PdfUpload, VideoUpload } from '../components/media/MediaUpload';
 
 export default class ClientInfoUpload extends PureComponent {
     static propTypes = {
@@ -58,9 +55,8 @@ export default class ClientInfoUpload extends PureComponent {
     }
 
     handleImageUpload = () => {
-        console.log('image upload triggered');
         const { newImage, imageUrls } = this.state;
-        const uploadTask = storage.ref(`images/${newImage.name}`).put(newImage);
+        const uploadTask = storage.ref(`/${newImage.name}`).put(newImage);
         uploadTask.on('state_changed', 
         (snapshot) => {
             const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
@@ -98,14 +94,9 @@ export default class ClientInfoUpload extends PureComponent {
                     <input type="textarea" name="newLinkDescription" defaultValue="External link description" onChange={this.handleChange}></input>
                     <p onClick={this.handleLinkSubmit}>Add External Link</p>
 
-                    {/* <div>
-                        <progress value={this.state.imgProgress} max="100" />
-                        <input name="newImage" type="file" onChange={this.handleMediaUploadChange}></input>
-                        <button onClick={this.handleImageUpload}>Upload Image</button>
-                    </div> */}
-                    <ImageUpload handleChange={this.handleImageUpload} handleUpload={this.handleImageUpload} progress={imgProgress} />
-                    <VideoUpload />
-                    <PdfUpload />
+                    <ImageUpload handleChange={this.handleMediaUploadChange} handleUpload={this.handleImageUpload} progress={imgProgress} />
+                    <VideoUpload handleChange={this.handleMediaUploadChange} />
+                    <PdfUpload handleChange={this.handleMediaUploadChange} />
 
                     <button>Submit</button>
                 </form>
