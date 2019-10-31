@@ -14,15 +14,17 @@ export default class ClientInfoUpload extends PureComponent {
         clientLastName: '',
         bio: '',
         newLink: '',
+        newLinkTitle: '',
+        newLinkDescription: '',
         externalLinks: [],
         images: [],
         pdfs: [],
         videos: []
     }
 
-    handleStringChange = (e) => {
+    handleChange = (e) => {
         this.setState({
-            [e.target.id]: e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
@@ -30,13 +32,18 @@ export default class ClientInfoUpload extends PureComponent {
         this.setState({ 
             newLink: e.target.value
         })
-    }
+    } 
 
     handleLinkSubmit = () => {
-        const { externalLinks, newLink } = this.state;
+        const { externalLinks, newLink, newLinkTitle, newLinkDescription } = this.state;
+        const link = {
+            link: newLink,
+            title: newLinkTitle,
+            desc: newLinkDescription
+        }
         // console.log('external links', externalLinks);
         this.setState({
-            externalLinks: [...externalLinks, newLink],
+            externalLinks: [...externalLinks, link],
             newLink: '',
         })
     }
@@ -52,14 +59,16 @@ export default class ClientInfoUpload extends PureComponent {
         return (
             <>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" name="clientFirstName" id="clientFirstName" defaultValue="First Name" onChange={this.handleStringChange}></input>
+                    <input type="text" name="clientFirstName" id="clientFirstName" defaultValue="First Name" onChange={this.handleChange}></input>
 
-                    <input type="text" name="clientLastName" id="clientLastName" defaultValue="Last Name" onChange={this.handleStringChange}></input>
-                    <input type="textarea" name="bio" defaultValue="Bio" id="bio" onChange={this.handleStringChange}></input>
-                    <input type="text" name="externalLinks" defaultValue="External Link" onChange={this.handleLinkChange}></input>
+                    <input type="text" name="clientLastName" id="clientLastName" defaultValue="Last Name" onChange={this.handleChange}></input>
+                    <input type="textarea" name="bio" defaultValue="Bio" id="bio" onChange={this.handleChange}></input>
+                    <input type="text" name="newLink" defaultValue="External Link" onChange={this.handleChange}></input>
+                    <input type="text" name="newLinkTitle" defaultValue="External link title" onChange={this.handleChange}></input>
+                    <input type="textarea" name="newLinkDescription" defaultValue="External link description" onChange={this.handleChange}></input>
                     <p onClick={this.handleLinkSubmit}>Add External Link</p>
-                    {/* <input type="text" name="external-link-title" defaultValue="External link title"></input>
-                    <input type="textarea" name="external-link-desc" defaultValue="External link description"></input> */}
+<br/>
+
                     <button>Submit</button>
                 </form>
                 <FileUpload />
