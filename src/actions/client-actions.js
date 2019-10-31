@@ -16,14 +16,12 @@ export const getAllClients = async () => {
     try {
         const clients = await clientsRef.get();
         const clientsList = clients.docs.map(doc => {
-            console.log('doc', doc.id);
             const client = {
                 id: doc.id,
                 ...doc.data()
             };
             return client;
         });
-        console.log('clients clietnactions', clients.docs[0].id);
         return clientsList; 
     } catch(error) {
         console.log('clients error', error);
