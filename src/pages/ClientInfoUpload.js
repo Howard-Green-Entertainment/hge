@@ -23,7 +23,10 @@ export default class ClientInfoUpload extends PureComponent {
         newPdf: '',
         pdfUrls: [],
         newVideo: '',
-        videoUrls: []
+        videoUrls: [],
+        imgProgress: 0,
+        pdfProgress: 0,
+        videoProgress: 0
     }
 
     handleChange = (e) => {
@@ -54,12 +57,13 @@ export default class ClientInfoUpload extends PureComponent {
     }
 
     handleImageUpload = () => {
+        console.log('image upload triggered');
         const { newImage, imageUrls } = this.state;
         const uploadTask = storage.ref(`images/${newImage.name}`).put(newImage);
         uploadTask.on('state_changed', 
         (snapshot) => {
             const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            this.setState({ progress: progress });
+            this.setState({ imgProgress: progress });
         }, 
         (error) => {
             console.log('Error uploading file', error);
@@ -92,7 +96,7 @@ export default class ClientInfoUpload extends PureComponent {
                     <p onClick={this.handleLinkSubmit}>Add External Link</p>
 
                     <div>
-                        <progress value={this.state.progress} max="100" />
+                        <progress value={this.state.imgProgress} max="100" />
                         <input name="newImage" type="file" onChange={this.handleMediaUploadChange}></input>
                         <button onClick={this.handleImageUpload}>Upload Image</button>
                     </div>
