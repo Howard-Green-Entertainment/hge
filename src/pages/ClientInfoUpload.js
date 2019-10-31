@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { addClient } from '../actions/client-actions';
+import FileUpload from '../components/media/FileUpload';
 export default class ClientInfoUpload extends PureComponent {
     static propTypes = {
         clients: PropTypes.array,
@@ -40,11 +41,9 @@ export default class ClientInfoUpload extends PureComponent {
                     <input type="text" name="externalLinks" defaultValue="External Link"></input>
                     <input type="text" name="external-link-title" defaultValue="External link title"></input>
                     <input type="textarea" name="external-link-desc" defaultValue="External link description"></input>
-                    {/* <button>Upload Images</button>
-                    <button>Upload Videos</button>
-                    <button>Upload PDFs</button> */}
                     <button>Submit</button>
                 </form>
+                <FileUpload />
             </>
         )
     }
