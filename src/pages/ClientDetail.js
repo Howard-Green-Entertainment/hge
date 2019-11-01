@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import testImg from '../logo.svg';
-// import PropTypes from 'prop-types';
-// import { getClientById } from '../selectors/client-selectors';
 import { Link } from 'react-router-dom';
 import { getClient } from '../actions/client-actions';
 
@@ -18,6 +16,22 @@ export default function ClientDetail({ match: { params: { clientId } }}) {
     
     if(!client) return ( <p>Loading...</p>)
 
+    const linkList = client.externalLinks.map(link => {
+        <li><a target="blank" href={link}>{link}</a></li>
+    })
+
+    const imageList = client.imageUrls.map(imageUrl => {
+        <li><a target="blank" href={imageUrl}><img src={imageUrl} alt="" /></a></li>
+    })
+
+    const videoList = client.videoUrls.map(videoUrl => {
+        <li><a target="blank" href={videoUrl}><img src={videoUrl} alt="" /></a></li>
+    })
+
+    const pdfList = client.pdfUrls.map(pdfUrl => {
+        <li><a target="blank" href={pdfUrl}><img src={pdfUrl} alt="" /></a></li>
+    })
+
         return (
             <>
                 <section className="client-detail">
@@ -26,20 +40,18 @@ export default function ClientDetail({ match: { params: { clientId } }}) {
                     <section className="client-info">
                         <h1>{client.clientFirstName} {client.clientLastName}</h1>
                         <p>{client.bio}</p>
-                        <ul>
-                            <li>External link 1</li>
-                            <li>External link 2</li>
-                            <li>External link 3</li>
-                        </ul>
+                        <ul>{linkList}</ul>
                     </section>
-                    <section className="client-videos">
-                        <div>Client video goes here</div>
-                    </section>
-                    <section className="client-pdfs">
-                        <ul>
-                            <li>CV</li>
-                            <li>Press Kit</li>
-                        </ul>
+                    <section className="client-media">
+                        <section className="client-images">
+                            <ul>{imageList}</ul>
+                        </section>
+                        <section className="client-videos">
+                            <ul>{videoList}</ul>
+                        </section>
+                        <section className="client-pdfs">
+                            <ul>{pdfList}</ul>
+                        </section>
                     </section>
                 </section>
             </>
