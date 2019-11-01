@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { addClient } from '../actions/client-actions';
 import { ImageUpload, PdfUpload, VideoUpload } from '../components/media/MediaUpload';
+import { storage } from '../config/firebaseConfig';
+
 
 export default class ClientInfoUpload extends PureComponent {
     static propTypes = {
@@ -13,8 +15,6 @@ export default class ClientInfoUpload extends PureComponent {
         clientLastName: '',
         bio: '',
         newLink: '',
-        newLinkTitle: '',
-        newLinkDescription: '',
         externalLinks: [],
         newImage: '',
         imageUrls: [],
@@ -42,47 +42,79 @@ export default class ClientInfoUpload extends PureComponent {
     }
 
     handleLinkSubmit = () => {
-        const { externalLinks, newLink, newLinkTitle, newLinkDescription } = this.state;
-        const link = {
-            link: newLink,
-            title: newLinkTitle,
-            desc: newLinkDescription
-        }
+        const { externalLinks, newLink } = this.state;
         this.setState({
-            externalLinks: [...externalLinks, link],
+            externalLinks: [...externalLinks, newLink],
             newLink: '',
         })
     }
 
     handleImageUpload = () => {
         const { newImage, imageUrls } = this.state;
-        const uploadTask = storage.ref(`/${newImage.name}`).put(newImage);
-        uploadTask.on('state_changed', 
-        (snapshot) => {
-            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            this.setState({ imgProgress: progress });
-        }, 
-        (error) => {
-            console.log('Error uploading file', error);
-        }, 
-        () => {
-            storage.ref('images').child(newImage.name).getDownloadURL()
-            .then(url => { 
-                this.setState({ imageUrls: [...imageUrls, url] })
-            })
-        });
+        const uploadTask = storage.ref(`images/${newImage.name}`).put(newImage);
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                this.setState({ imgProgress: progress });
+            },
+            (error) => {
+                console.log('Error uploading file', error);
+            },
+            () => {
+                storage.ref('/images').child(newImage.name).getDownloadURL()
+                    .then(url => {
+                        this.setState({ imageUrls: [...imageUrls, url], imgProgress: 0, newImage: null })
+                    })
+            });
+    }
+
+    handleVideoUpload = () => {
+        const { newVideo, videoUrls } = this.state;
+        const uploadTask = storage.ref(`videos/${newVideo.name}`).put(newVideo);
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                this.setState({ videoProgress: progress });
+            },
+            (error) => {
+                console.log('Error uploading file', error);
+            },
+            () => {
+                storage.ref('videos').child(newVideo.name).getDownloadURL()
+                    .then(url => {
+                        this.setState({ videoUrls: [...videoUrls, url], videoProgress: 0, newVideo: null })
+                    })
+            });
+    }
+
+    handlePdfUpload = () => {
+        const { newPdf, pdfUrls } = this.state;
+        const uploadTask = storage.ref(`pdfs/${newPdf.name}`).put(newPdf);
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                this.setState({ pdfProgress: progress });
+            },
+            (error) => {
+                console.log('Error uploading file', error);
+            },
+            () => {
+                storage.ref('pdfs').child(newPdf.name).getDownloadURL()
+                    .then(url => {
+                        this.setState({ pdfUrls: [...pdfUrls, url], pdfProgress: 0, newPdf: null })
+                    })
+            });
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log('submit happened', this.state);
         const client = this.state;
-        console.log('client', client);
         addClient(client);
     }
 
     render() {
-        const { imgProgress } = this.state;
-        console.log('img progress form', imgProgress);
+        const { imgProgress, videoProgress, pdfProgress } = this.state;
         return (
             <>
                 <form onSubmit={this.handleSubmit}>
@@ -94,12 +126,14 @@ export default class ClientInfoUpload extends PureComponent {
                     <input type="textarea" name="newLinkDescription" defaultValue="External link description" onChange={this.handleChange}></input>
                     <p onClick={this.handleLinkSubmit}>Add External Link</p>
 
-                    <ImageUpload handleChange={this.handleMediaUploadChange} handleUpload={this.handleImageUpload} progress={imgProgress} />
-                    <VideoUpload handleChange={this.handleMediaUploadChange} />
-                    <PdfUpload handleChange={this.handleMediaUploadChange} />
+
 
                     <button>Submit</button>
                 </form>
+
+                <ImageUpload handleChange={this.handleMediaUploadChange} handleUpload={this.handleImageUpload} progress={imgProgress} />
+                <VideoUpload handleChange={this.handleMediaUploadChange} handleUpload={this.handleVideoUpload} progress={videoProgress} />
+                <PdfUpload handleChange={this.handleMediaUploadChange} handleUpload={this.handlePdfUpload} progress={pdfProgress} />
             </>
         )
     }
