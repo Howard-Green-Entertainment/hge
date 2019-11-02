@@ -15,7 +15,8 @@ export default class ClientInfoUpload extends PureComponent {
         clientLastName: '',
         bio: '',
         newLink: '',
-        externalLinks: [],
+        externalLinks: {},
+        externalLinkTitle: '',
         newImage: '',
         imageUrls: [],
         newPdf: '',
@@ -42,9 +43,16 @@ export default class ClientInfoUpload extends PureComponent {
     }
 
     handleLinkSubmit = () => {
-        const { externalLinks, newLink } = this.state;
+        const { externalLinks, newLink, externalLinkTitle } = this.state;
+        // const link = {
+        //     title: externalLinkTitle,
+        //     url: newLink
+        // }
         this.setState({
-            externalLinks: [...externalLinks, newLink],
+            externalLinks: {
+                ...externalLinks,
+                [externalLinkTitle]: newLink
+            },
             newLink: '',
         })
     }
@@ -122,12 +130,9 @@ export default class ClientInfoUpload extends PureComponent {
                     <input type="text" name="clientLastName" id="clientLastName" defaultValue="Last Name" onChange={this.handleChange}></input>
                     <input type="textarea" name="bio" defaultValue="Bio" id="bio" onChange={this.handleChange}></input>
                     <input type="text" name="newLink" defaultValue="External Link" onChange={this.handleChange}></input>
-                    {/* <input type="text" name="newLinkTitle" defaultValue="External link title" onChange={this.handleChange}></input> */}
+                    <input type="text" name="externalLinkTitle" defaultValue="External link title" onChange={this.handleChange}></input>
                     {/* <input type="textarea" name="newLinkDescription" defaultValue="External link description" onChange={this.handle Change}></input> */}
                     <p onClick={this.handleLinkSubmit}>Add External Link</p>
-
-
-
                     <button>Submit</button>
                 </form>
 

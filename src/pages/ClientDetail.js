@@ -16,11 +16,17 @@ export default function ClientDetail({ match: { params: { clientId } }}) {
     
     if(!client) return ( <p>Loading...</p>);
 
+    const links = Object.entries(client.externalLinks);
+
+    
 
 
-    const linkList = client.externalLinks.map(link => {
-        return <li key={link}><a target="blank" href={link}>{link}</a></li>
+    const linkList = links.map(link => {
+
+            return <li key={link[0]}><a target="blank" href={link[1]}>{link[0]}</a></li>
     })
+
+    console.log('link list', linkList); 
 
     const imageList = client.imageUrls.map(imageUrl => {
         return <li key={imageUrl}><a target="blank" href={imageUrl}><img src={imageUrl} alt="" /></a></li>
