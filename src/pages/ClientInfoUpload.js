@@ -122,8 +122,8 @@ export default class ClientInfoUpload extends PureComponent {
                     <input type="text" name="clientLastName" id="clientLastName" defaultValue="Last Name" onChange={this.handleChange}></input>
                     <input type="textarea" name="bio" defaultValue="Bio" id="bio" onChange={this.handleChange}></input>
                     <input type="text" name="newLink" defaultValue="External Link" onChange={this.handleChange}></input>
-                    <input type="text" name="newLinkTitle" defaultValue="External link title" onChange={this.handleChange}></input>
-                    <input type="textarea" name="newLinkDescription" defaultValue="External link description" onChange={this.handleChange}></input>
+                    {/* <input type="text" name="newLinkTitle" defaultValue="External link title" onChange={this.handleChange}></input> */}
+                    {/* <input type="textarea" name="newLinkDescription" defaultValue="External link description" onChange={this.handle Change}></input> */}
                     <p onClick={this.handleLinkSubmit}>Add External Link</p>
 
 

@@ -1,50 +1,21 @@
-// import React, { useState, useEffect } from 'react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import { getClient } from '../actions/client-actions';
+import { getClient } from '../actions/client-actions';
 import './ClientDetail.css';
 
 export default function ClientDetail({ match: { params: { clientId } }}) {
 
-    // let [client, setClient] = useState(null);
+    let [client, setClient] = useState(null);
 
-    // useEffect(() => {
-    //     getClient(clientId)
-    //     .then(client => {
-    //         setClient(client)
-    //     })
-    // }, [clientId]);
+    useEffect(() => {
+        getClient(clientId)
+        .then(client => {
+            setClient(client)
+        })
+    }, [clientId]);
     
-    // if(!client) return ( <p>Loading...</p>)
+    if(!client) return ( <p>Loading...</p>);
 
-    //OFFLINE CLIENT:
-    
-    const client = {
-        id: 1234,
-        clientFirstName: 'Peter',
-        clientLastName: 'Parisot',
-        bio: 'He da bes',
-        externalLinks: [
-            'www.google.com',
-            'www.yahoo.com',
-            'www.aol.com'
-        ],
-        imageUrls: [
-            'www.google.com',
-            'www.yahoo.com',
-            'www.aol.com'
-        ],
-        videoUrls: [
-            'www.google.com',
-            'www.yahoo.com',
-            'www.aol.com'
-        ],
-        pdfUrls: [
-            'www.google.com',
-            'www.yahoo.com',
-            'www.aol.com'
-        ]
-    }
 
 
     const linkList = client.externalLinks.map(link => {
@@ -56,11 +27,11 @@ export default function ClientDetail({ match: { params: { clientId } }}) {
     })
 
     const videoList = client.videoUrls.map(videoUrl => {
-        return <li key={videoUrl}><a target="blank" href={videoUrl}><img src={videoUrl} alt="" /></a></li>
+        return <li key={videoUrl}><a target="blank" href={videoUrl}>{videoUrl}</a></li>
     })
 
     const pdfList = client.pdfUrls.map(pdfUrl => {
-        return <li key={pdfUrl}><a target="blank" href={pdfUrl}><img src={pdfUrl} alt="" /></a></li>
+        return <li key={pdfUrl}><a target="blank" href={pdfUrl}>{pdfUrl}</a></li>
     })
 
         return (
