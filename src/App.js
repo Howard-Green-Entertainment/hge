@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Landing from './pages/Landing';
 import Header from './components/global/Header';
 import Footer from './components/global/Footer';
@@ -15,7 +14,7 @@ import {
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header />
       <Router>
         <Switch>
