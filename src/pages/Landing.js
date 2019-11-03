@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 export default function Landing() {
     return (
-        <>
-            <p>Landing page layout here lorem ipsum</p>
-            <Link to="/upload"><button>Client upload</button></Link>
-        </>
+        <div className="landing-main">
+            <h2>Howard Green Entertainment represents the best talent in the industry.</h2>
+            <p>Contact us at 555-555-5555.</p>
+        </div>
     )
 }

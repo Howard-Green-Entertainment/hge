@@ -43,4 +43,14 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem;
+}
+
+.landing-main {
+  padding: 1rem 5rem 0 5rem;
+}
+
+.landing-main h2 {
+  text-transform: uppercase;
+  font-size: 5rem;
 }
