@@ -20,9 +20,11 @@ export default class ClientInfoUpload extends PureComponent {
         newImage: '',
         imageUrls: [],
         newPdf: '',
-        pdfUrls: [],
+        pdfTitle: '',
+        pdfUrls: {},
         newVideo: '',
-        videoUrls: [],
+        videoTitle: '',
+        videoUrls: {},
         imgProgress: 0,
         pdfProgress: 0,
         videoProgress: 0
@@ -44,10 +46,6 @@ export default class ClientInfoUpload extends PureComponent {
 
     handleLinkSubmit = () => {
         const { externalLinks, newLink, externalLinkTitle } = this.state;
-        // const link = {
-        //     title: externalLinkTitle,
-        //     url: newLink
-        // }
         this.setState({
             externalLinks: {
                 ...externalLinks,
@@ -56,6 +54,8 @@ export default class ClientInfoUpload extends PureComponent {
             newLink: '',
         })
     }
+
+
 
     handleImageUpload = () => {
         const { newImage, imageUrls } = this.state;
@@ -77,7 +77,7 @@ export default class ClientInfoUpload extends PureComponent {
     }
 
     handleVideoUpload = () => {
-        const { newVideo, videoUrls } = this.state;
+        const { newVideo, videoUrls, videoTitle } = this.state;
         const uploadTask = storage.ref(`videos/${newVideo.name}`).put(newVideo);
         uploadTask.on('state_changed',
             (snapshot) => {
@@ -90,13 +90,13 @@ export default class ClientInfoUpload extends PureComponent {
             () => {
                 storage.ref('videos').child(newVideo.name).getDownloadURL()
                     .then(url => {
-                        this.setState({ videoUrls: [...videoUrls, url], videoProgress: 0, newVideo: null })
+                        this.setState({ videoUrls: {...videoUrls, [videoTitle]: url}, videoProgress: 0, newVideo: null })
                     })
             });
     }
 
     handlePdfUpload = () => {
-        const { newPdf, pdfUrls } = this.state;
+        const { newPdf, pdfUrls, pdfTitle } = this.state;
         const uploadTask = storage.ref(`pdfs/${newPdf.name}`).put(newPdf);
         uploadTask.on('state_changed',
             (snapshot) => {
@@ -109,7 +109,7 @@ export default class ClientInfoUpload extends PureComponent {
             () => {
                 storage.ref('pdfs').child(newPdf.name).getDownloadURL()
                     .then(url => {
-                        this.setState({ pdfUrls: [...pdfUrls, url], pdfProgress: 0, newPdf: null })
+                        this.setState({ pdfUrls: {...pdfUrls, [pdfTitle]: url}, pdfProgress: 0, newPdf: null })
                     })
             });
     }
@@ -137,8 +137,13 @@ export default class ClientInfoUpload extends PureComponent {
                 </form>
 
                 <ImageUpload handleChange={this.handleMediaUploadChange} handleUpload={this.handleImageUpload} progress={imgProgress} />
+
                 <VideoUpload handleChange={this.handleMediaUploadChange} handleUpload={this.handleVideoUpload} progress={videoProgress} />
+                <input type="text" name="videoTitle" defaultValue="Video title" onChange={this.handleChange}></input>
+
                 <PdfUpload handleChange={this.handleMediaUploadChange} handleUpload={this.handlePdfUpload} progress={pdfProgress} />
+                <input type="text" name="pdfTitle" defaultValue="PDF title" onChange={this.handleChange}></input>
+
             </>
         )
     }
