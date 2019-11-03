@@ -16,10 +16,8 @@ export default function ClientList() {
     if(!clients) return ( <p>Loading...</p>)
     
     const clientList = clients.map(client => {
-        console.log('client', client);
-        const clientId = `clients/${client.id}`;
             return <li key={client.id}>
-                <Link to={clientId}><h3>{client.clientFirstName} {client.clientLastName}</h3></Link>
+                <Link to={client.id}><h3>{client.clientFirstName} {client.clientLastName}</h3></Link>
                 <p>{client.bio}</p>
             </li>
         })
