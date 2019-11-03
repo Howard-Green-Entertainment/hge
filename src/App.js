@@ -14,17 +14,19 @@ import {
 
 function App() {
   return (
-    <div>
-      <Header />
-      <Router>
-        <Switch>
-          <Route exact path="/clients/:clientId" component={ClientDetail} />
-          <Route exact path="/clients" component={ClientList} />
-          <Route exact path="/upload" component={ClientInfoUpload} />
-          <Route exact path="/" component={Landing} />
-        </Switch>
-      </Router>
-      <Footer />
+    <div className="app">
+        <Header />
+      <div className="app-content">
+        <Router>
+          <Switch>
+            <Route exact path="/clients/:clientId" component={ClientDetail} />
+            <Route exact path="/clients" component={ClientList} />
+            <Route exact path="/upload" component={ClientInfoUpload} />
+            <Route exact path="/" component={Landing} />
+          </Switch>
+        </Router>
+      </div>
+        <Footer />
     </div>
   );
 }
