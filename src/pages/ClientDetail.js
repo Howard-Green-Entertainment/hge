@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getClient } from '../actions/client-actions';
-import './ClientDetail.css';
 
 export default function ClientDetail({ match: { params: { clientId } }}) {
 
