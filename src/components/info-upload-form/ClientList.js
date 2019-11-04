@@ -18,13 +18,15 @@ export default function ClientList() {
     const clientList = clients.map(client => {
             return <li key={client.id}>
                 <Link to={client.id}><h3>{client.clientFirstName} {client.clientLastName}</h3></Link>
-                <p>{client.bio}</p>
             </li>
         })
     
         return (
-            <ul>
-                {clientList}
-            </ul>
+            <div className="all-clients">
+                <h2>Clients:</h2>
+                <ul className="client-list">
+                    {clientList}
+                </ul>
+            </div>
         )
 }
