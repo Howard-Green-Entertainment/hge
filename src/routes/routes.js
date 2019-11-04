@@ -3,25 +3,27 @@ import ClientInfoUpload from '../pages/ClientInfoUpload';
 import ClientDetail from '../pages/ClientDetail';
 import ClientList from '../components/info-upload-form/ClientList';
 
-export const routes = {
+const routes = {
     LANDING: {
         path: '/',
         component: Landing,
-        linkTo: () => '/'
+        linkPath: () => '/'
     },
     UPLOAD: {
         path: '/upload',
         component: ClientInfoUpload,
-        linkTo: () => '/upload'
+        linkPath: () => '/upload'
     },
     CLIENT_DETAIL: {
         path: 'clients/:clientId',
         component: ClientDetail,
-        linkTo: clientId => `/${clientId}`
+        linkPath: clientId => `clients/${clientId}`
     },
     CLIENTS: {
         path:'clients',
         component: ClientList,
-        linkTo: () => '/clients'
+        linkPath: () => '/clients'
     }
 };
+
+export default routes;

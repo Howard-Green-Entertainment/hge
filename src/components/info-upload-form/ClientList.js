@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllClients } from '../../actions/client-actions';
+import routes from '../../routes/routes'
 
 export default function ClientList() {
 
@@ -17,7 +18,7 @@ export default function ClientList() {
     
     const clientList = clients.map(client => {
             return <li key={client.id}>
-                <Link to={client.id}><h3>{client.clientFirstName} {client.clientLastName}</h3></Link>
+                <Link to={routes.CLIENT_DETAIL.linkPath(client.id)}><h3>{client.clientFirstName} {client.clientLastName}</h3></Link>
             </li>
         })
     
