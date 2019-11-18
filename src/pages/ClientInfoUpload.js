@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { addClient } from '../actions/client-actions';
-// import { ImageUpload } from '../components/media/MediaUpload';
 import { storage } from '../config/firebaseConfig';
 
 
@@ -76,7 +75,6 @@ export default class ClientInfoUpload extends PureComponent {
 
     handleVideoUpload = () => {
         const { newVideo, videoUrls, videoTitle } = this.state;
-        console.log('video', newVideo);
         const uploadTask = storage.ref(`videos/${newVideo.name}`).put(newVideo);
         uploadTask.on('state_changed',
             (snapshot) => {
@@ -115,7 +113,6 @@ export default class ClientInfoUpload extends PureComponent {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submit happened', this.state);
         const client = this.state;
         addClient(client);
     }
@@ -130,7 +127,6 @@ export default class ClientInfoUpload extends PureComponent {
                     <input type="textarea" name="bio" defaultValue="Bio" id="bio" onChange={this.handleChange}></input>
                     <input type="text" name="newLink" defaultValue="External Link" onChange={this.handleChange}></input>
                     <input type="text" name="externalLinkTitle" defaultValue="External link title" onChange={this.handleChange}></input>
-                    {/* <input type="textarea" name="newLinkDescription" defaultValue="External link description" onChange={this.handle Change}></input> */}
                     <p onClick={this.handleLinkSubmit}>Add External Link</p>
                     <button>Submit</button>
                 </form>
