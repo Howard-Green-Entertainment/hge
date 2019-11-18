@@ -81,3 +81,7 @@ code {
 .client-list a:hover {
   color: #DE6449;
 }
+
+.client-detail {
+  width: 80%;
+}

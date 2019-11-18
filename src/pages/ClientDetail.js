@@ -37,7 +37,6 @@ export default function ClientDetail({ match: { params: { clientId } }}) {
         return (
             <>
                 <section className="client-detail">
-                    <Link to="/"><button>Back Home</button></Link>
                     <section className="client-info">
                         <h1>{client.clientFirstName} {client.clientLastName}</h1>
                         <p>{client.bio}</p>

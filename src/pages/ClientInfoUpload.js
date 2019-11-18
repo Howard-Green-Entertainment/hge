@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { addClient } from '../actions/client-actions';
-import { ImageUpload, PdfUpload, VideoUpload } from '../components/media/MediaUpload';
+// import { ImageUpload } from '../components/media/MediaUpload';
 import { storage } from '../config/firebaseConfig';
 
 
@@ -55,8 +55,6 @@ export default class ClientInfoUpload extends PureComponent {
         })
     }
 
-
-
     handleImageUpload = () => {
         const { newImage, imageUrls } = this.state;
         const uploadTask = storage.ref(`images/${newImage.name}`).put(newImage);
@@ -78,6 +76,7 @@ export default class ClientInfoUpload extends PureComponent {
 
     handleVideoUpload = () => {
         const { newVideo, videoUrls, videoTitle } = this.state;
+        console.log('video', newVideo);
         const uploadTask = storage.ref(`videos/${newVideo.name}`).put(newVideo);
         uploadTask.on('state_changed',
             (snapshot) => {
@@ -136,12 +135,18 @@ export default class ClientInfoUpload extends PureComponent {
                     <button>Submit</button>
                 </form>
 
-                <ImageUpload handleChange={this.handleMediaUploadChange} handleUpload={this.handleImageUpload} progress={imgProgress} />
+                <progress value={imgProgress} max="100" />
+                <input type="file" name="newImage" onChange={this.handleMediaUploadChange} />
+                <button onClick={this.handleImageUpload}>Upload Image</button>
 
-                <VideoUpload handleChange={this.handleMediaUploadChange} handleUpload={this.handleVideoUpload} progress={videoProgress} />
+                <progress value={videoProgress} max="100" />
+                <input type="file" name="newVideo" onChange={this.handleMediaUploadChange} />
+                <button onClick={this.handleVideoUpload}>Video Upload</button>
                 <input type="text" name="videoTitle" defaultValue="Video title" onChange={this.handleChange}></input>
 
-                <PdfUpload handleChange={this.handleMediaUploadChange} handleUpload={this.handlePdfUpload} progress={pdfProgress} />
+                <progress value={pdfProgress} max="100" />
+                <input type="file" name="newPdf" onChange={this.handleMediaUploadChange} />
+                <button onClick={this.handlePdfUpload}>PDF Upload</button>
                 <input type="text" name="pdfTitle" defaultValue="PDF title" onChange={this.handleChange}></input>
 
             </>
