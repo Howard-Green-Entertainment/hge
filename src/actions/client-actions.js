@@ -4,7 +4,6 @@ import { clientsRef } from '../config/firebaseRefs';
 export const getClient = async clientId => {
     try {
         const client = await clientsRef.doc(clientId).get();
-        console.log('client action', client.data());
         return client.data();
     } catch(error) {
         console.log('client error', error);

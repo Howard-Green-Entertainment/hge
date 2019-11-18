@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { getClient } from '../actions/client-actions';
+import '../index.css';
 
 export default function ClientDetail({ match: { params: { clientId } }}) {
 
@@ -36,23 +36,21 @@ export default function ClientDetail({ match: { params: { clientId } }}) {
 
         return (
             <>
+                <h1 className="client-h1">{client.clientFirstName} {client.clientLastName}</h1>
                 <section className="client-detail">
-                    <section className="client-info">
-                        <h1>{client.clientFirstName} {client.clientLastName}</h1>
-                        <p>{client.bio}</p>
-                        <ul>{linkList}</ul>
-                    </section>
-                    <section className="client-media">
                         <section className="client-images">
                             <ul>{imageList}</ul>
                         </section>
-                        <section className="client-videos">
-                            <ul>{videoList}</ul>
+                        <section className="client-info">
+                            <p>{client.bio}</p>
+                            <ul>{linkList}</ul>
+                            <section className="client-videos">
+                                <ul>{videoList}</ul>
+                            </section>
+                            <section className="client-pdfs">
+                                <ul>{pdfList}</ul>
+                            </section>
                         </section>
-                        <section className="client-pdfs">
-                            <ul>{pdfList}</ul>
-                        </section>
-                    </section>
                 </section>
             </>
         )
