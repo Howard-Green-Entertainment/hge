@@ -42,12 +42,16 @@ export default function ClientDetail({ match: { params: { clientId } }}) {
                             <ul>{imageList}</ul>
                         </section>
                         <section className="client-info">
+                            <h3>Bio:</h3>
                             <p>{client.bio}</p>
+                            <h3>Relevant Links</h3>
                             <ul>{linkList}</ul>
                             <section className="client-videos">
+                                <h3>Videos</h3>
                                 <ul>{videoList}</ul>
                             </section>
                             <section className="client-pdfs">
+                                <h3>PDFs</h3>
                                 <ul>{pdfList}</ul>
                             </section>
                         </section>
