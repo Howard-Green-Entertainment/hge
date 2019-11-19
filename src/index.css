@@ -119,3 +119,8 @@ code {
   margin-block-end: 1rem;
   margin-left: 2.5rem;
 }
+
+.client-videos li {
+  width: 25rem;
+  list-style: none;
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getClient } from '../actions/client-actions';
 import '../index.css';
+import { Player } from 'video-react';
 
 export default function ClientDetail({ match: { params: { clientId } }}) {
 
@@ -26,7 +27,7 @@ export default function ClientDetail({ match: { params: { clientId } }}) {
 
     const videos = Object.entries(client.videoUrls);
     const videoList = videos.map(video => {
-        return <li key={video[0]}><a target="blank" href={video[1]}>{video[0]}</a></li>
+        return <li key={video[0]}><p>{video[0]}</p><Player styles={{ position: 'relative' }} src={video[1]}/></li>
     })
 
     const pdfs = Object.entries(client.pdfUrls);
