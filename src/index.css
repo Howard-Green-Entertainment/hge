@@ -55,6 +55,17 @@ code {
   font-size: 5rem;
 }
 
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.form-wrapper form {
+  display: flex;
+  flex-direction: column;
+}
+
 .all-clients {
   margin: 2rem 1rem 0 5rem;
 }
@@ -132,4 +143,9 @@ code {
   width: 25rem;
   list-style: none;
   padding-bottom: 2rem;
+}
+
+.image-upload, .video-upload, .pdf-upload {
+  display: flex;
+  flex-direction: column;
 }
