@@ -36,14 +36,14 @@ export default function ClientDetail({ match: { params: { clientId } }}) {
     })
 
         return (
-            <>
+            <section className="client-wrapper">
                 <h1 className="client-h1">{client.clientFirstName} {client.clientLastName}</h1>
                 <section className="client-detail">
                         <section className="client-images">
                             <ul>{imageList}</ul>
                         </section>
                         <section className="client-info">
-                            <h3>Bio:</h3>
+                            <h3>Bio</h3>
                             <p>{client.bio}</p>
                             <h3>Relevant Links</h3>
                             <ul>{linkList}</ul>
@@ -57,6 +57,6 @@ export default function ClientDetail({ match: { params: { clientId } }}) {
                             </section>
                         </section>
                 </section>
-            </>
+            </section>
         )
 }

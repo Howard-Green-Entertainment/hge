@@ -64,6 +64,9 @@ code {
   text-transform: uppercase;
 }
 
+.client-wrapper {
+  padding-left: 3rem;
+}
 
 .client-list {
   padding: 0 0 0 2rem;
@@ -87,6 +90,11 @@ code {
   display: flex;
   justify-content: flex-start;
   padding-left: 2.5rem;
+}
+
+.client-images li {
+  width: 450px;
+  padding-bottom: 1rem;
 }
 
 .client-images {
@@ -123,4 +131,5 @@ code {
 .client-videos li {
   width: 25rem;
   list-style: none;
+  padding-bottom: 2rem;
 }
