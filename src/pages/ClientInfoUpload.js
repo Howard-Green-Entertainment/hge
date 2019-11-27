@@ -121,67 +121,82 @@ export default class ClientInfoUpload extends PureComponent {
         const { imgProgress, videoProgress, pdfProgress } = this.state;
         return (
             <section className="form-wrapper">
+                <h2>Basic Information:</h2>
                 <form>
                     <label >
                         First Name: 
                         <input type="text"
                         name="clientFirstName"
                         id="clientFirstName"  
-                        onChange={this.handleChange}></input>
+                        onChange={this.handleChange}
+                        autoComplete="off"></input>
                     </label>
                     <label>
                         Last Name:
                         <input type="text"
                         name="clientLastName"
                         id="clientLastName"  
-                        onChange={this.handleChange}></input>
+                        onChange={this.handleChange}
+                        autoComplete="off"></input>
                     </label>
                     <label>
                         Bio:
                         <textarea name="bio"
                         id="bio" 
-                        onChange={this.handleChange}></textarea>
+                        onChange={this.handleChange}
+                        autoComplete="off"></textarea>
                     </label>
                     <label>
                         External Link Address:
                         <input type="text"
                         name="newLink"
-                        onChange={this.handleChange}></input>
+                        onChange={this.handleChange}
+                        autoComplete="off"></input>
                     </label>
                     <label>
                         External Link Title:
                         <input type="text"
                         name="externalLinkTitle"
-                        onChange={this.handleChange}></input>
+                        onChange={this.handleChange}
+                        autoComplete="off"></input>
                     </label>
-                    <p onClick={this.handleLinkSubmit}>Add External Link</p>
-
+                    <p className="add-link-button" onClick={this.handleLinkSubmit}>Add External Link</p>
                 </form>
-
-                <label className="image-upload">
-                    Image Upload:
-                    <progress value={imgProgress} max="100" />
-                    <input type="file" name="newImage" onChange={this.handleMediaUploadChange} />
+                <section className="media-upload">
+                    <h2>Upload Media:</h2>
+                    <label className="image-upload">
+                        Image Upload:
+                        <progress value={imgProgress} max="100" />
+                        <input type="file" name="newImage" onChange={this.handleMediaUploadChange} />
+                    </label>
                     <button onClick={this.handleImageUpload}>Upload Image</button>
-                </label>
 
-                <label className="video-upload">
-                    Video Upload:
-                    <progress value={videoProgress} max="100" />
-                    <input type="file" name="newVideo" onChange={this.handleMediaUploadChange} />
-                    <button onClick={this.handleVideoUpload}>Video Upload</button>
-                    <input type="text" name="videoTitle" defaultValue="Video title" onChange={this.handleChange}></input>
-                </label>
+                    <label className="video-upload">
+                        Video Upload:
+                        <progress value={videoProgress} max="100" />
+                        <input type="file" name="newVideo" onChange={this.handleMediaUploadChange} />
+                    </label>
+                        <input 
+                        type="text"
+                        name="videoTitle"
+                        defaultValue="Video title"
+                        onChange={this.handleChange}
+                        autoComplete="off"></input>
+                        <button onClick={this.handleVideoUpload}>Video Upload</button>
 
-                <label className="pdf-upload">
-                    PDF Upload:
-                    <progress value={pdfProgress} max="100" />
-                    <input type="file" name="newPdf" onChange={this.handleMediaUploadChange} />
-                    <button onClick={this.handlePdfUpload}>PDF Upload</button>
-                    <input type="text" name="pdfTitle" defaultValue="PDF title" onChange={this.handleChange}></input>
-                </label>
-                
-
+                    <label className="pdf-upload">
+                        PDF Upload:
+                        <progress value={pdfProgress} max="100" />
+                        <input type="file" name="newPdf" onChange={this.handleMediaUploadChange} />
+                    </label>
+                        <input
+                        type="text" 
+                        name="pdfTitle" 
+                        defaultValue="PDF title" 
+                        onChange={this.handleChange}
+                        autoComplete="off"></input>
+                        <button onClick={this.handlePdfUpload}>PDF Upload</button>
+                </section>
                 <button onClick={this.handleSubmit}>Submit Client To Database</button>
             </section>
         )
