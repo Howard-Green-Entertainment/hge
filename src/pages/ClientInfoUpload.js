@@ -52,6 +52,7 @@ export default class ClientInfoUpload extends PureComponent {
             },
             newLink: '',
         })
+        alert('External link added!');
     }
 
     handleImageUpload = () => {
@@ -66,7 +67,7 @@ export default class ClientInfoUpload extends PureComponent {
                 console.log('Error uploading file', error);
             },
             () => {
-                storage.ref('/images').child(newImage.name).getDownloadURL()
+                storage.ref('images').child(newImage.name).getDownloadURL()
                     .then(url => {
                         this.setState({ imageUrls: [...imageUrls, url], imgProgress: 0, newImage: null })
                     })
@@ -87,9 +88,10 @@ export default class ClientInfoUpload extends PureComponent {
             () => {
                 storage.ref('videos').child(newVideo.name).getDownloadURL()
                     .then(url => {
-                        this.setState({ videoUrls: {...videoUrls, [videoTitle]: url}, videoProgress: 0, newVideo: null })
+                        this.setState({ videoUrls: { ...videoUrls, [videoTitle]: url }, videoProgress: 0, newVideo: null })
                     })
             });
+
     }
 
     handlePdfUpload = () => {
@@ -104,9 +106,9 @@ export default class ClientInfoUpload extends PureComponent {
                 console.log('Error uploading file', error);
             },
             () => {
-                storage.ref('pdfs').child(newPdf.name).getDownloadURL()
+                storage.ref('/pdfs').child(newPdf.name).getDownloadURL()
                     .then(url => {
-                        this.setState({ pdfUrls: {...pdfUrls, [pdfTitle]: url}, pdfProgress: 0, newPdf: null })
+                        this.setState({ pdfUrls: { ...pdfUrls, [pdfTitle]: url }, pdfProgress: 0, newPdf: null })
                     })
             });
     }
@@ -124,46 +126,47 @@ export default class ClientInfoUpload extends PureComponent {
                 <h2>Basic Information:</h2>
                 <form>
                     <label >
-                        First Name: 
+                        First Name:
                         <input type="text"
-                        name="clientFirstName"
-                        id="clientFirstName"  
-                        onChange={this.handleChange}
-                        autoComplete="off"></input>
+                            name="clientFirstName"
+                            id="clientFirstName"
+                            onChange={this.handleChange}
+                            autoComplete="off"></input>
                     </label>
                     <label>
                         Last Name:
                         <input type="text"
-                        name="clientLastName"
-                        id="clientLastName"  
-                        onChange={this.handleChange}
-                        autoComplete="off"></input>
+                            name="clientLastName"
+                            id="clientLastName"
+                            onChange={this.handleChange}
+                            autoComplete="off"></input>
                     </label>
                     <label>
                         Bio:
                         <textarea name="bio"
-                        id="bio" 
-                        onChange={this.handleChange}
-                        autoComplete="off"></textarea>
+                            id="bio"
+                            onChange={this.handleChange}
+                            autoComplete="off"></textarea>
                     </label>
                     <label>
                         External Link Address:
                         <input type="text"
-                        name="newLink"
-                        onChange={this.handleChange}
-                        autoComplete="off"></input>
+                            name="newLink"
+                            onChange={this.handleChange}
+                            autoComplete="off"></input>
                     </label>
                     <label>
                         External Link Title:
                         <input type="text"
-                        name="externalLinkTitle"
-                        onChange={this.handleChange}
-                        autoComplete="off"></input>
+                            name="externalLinkTitle"
+                            onChange={this.handleChange}
+                            autoComplete="off"></input>
                     </label>
                     <p className="add-link-button" onClick={this.handleLinkSubmit}>Add External Link</p>
                 </form>
                 <section className="media-upload">
                     <h2>Upload Media:</h2>
+                    <p>**All titles are required for file upload**</p>
                     <label className="image-upload">
                         Image Upload:
                         <progress value={imgProgress} max="100" />
@@ -176,28 +179,30 @@ export default class ClientInfoUpload extends PureComponent {
                         <progress value={videoProgress} max="100" />
                         <input type="file" name="newVideo" onChange={this.handleMediaUploadChange} />
                     </label>
-                        <input 
+                    <input
+                        className="title-input"
                         type="text"
                         name="videoTitle"
                         defaultValue="Video title"
                         onChange={this.handleChange}
                         autoComplete="off"></input>
-                        <button onClick={this.handleVideoUpload}>Video Upload</button>
+                    <button onClick={this.handleVideoUpload}>Upload Video</button>
 
                     <label className="pdf-upload">
                         PDF Upload:
                         <progress value={pdfProgress} max="100" />
                         <input type="file" name="newPdf" onChange={this.handleMediaUploadChange} />
                     </label>
-                        <input
-                        type="text" 
-                        name="pdfTitle" 
-                        defaultValue="PDF title" 
+                    <input
+                        className="title-input"
+                        type="text"
+                        name="pdfTitle"
+                        defaultValue="PDF title"
                         onChange={this.handleChange}
                         autoComplete="off"></input>
-                        <button onClick={this.handlePdfUpload}>PDF Upload</button>
+                    <button onClick={this.handlePdfUpload}>Upload PDF</button>
                 </section>
-                <button onClick={this.handleSubmit}>Submit Client To Database</button>
+                <button className="submit" onClick={this.handleSubmit}>Submit Client To Database</button>
             </section>
         )
     }

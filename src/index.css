@@ -80,18 +80,74 @@ input, textarea {
 }
 
 .add-link-button {
+  align-self: flex-end;
   text-transform: uppercase;
   text-align: right;
   font-weight: bold;
-  text-decoration: underline;
-  color: coral;
+  background-color: lightgray;
+  border: 1px solid black;
+  padding: .3rem;
+  font-size: .7rem;
 }
 
 .add-link-button:hover {
   cursor: pointer;
-  color: deeppink;
+  color: darkgreen;
 }
 
+.media-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.media-upload progress {
+  background-color: lightgreen;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.media-upload input {
+  width: 100%;
+  margin: 0;
+}
+
+.media-upload .title-input {
+  width: 85%;
+  padding: .2rem .6rem;
+  margin-bottom: 1rem;
+}
+
+.media-upload button {
+  align-self: flex-end;
+  text-transform: uppercase;
+  text-align: right;
+  font-weight: bold;
+  background-color: lightgray;
+  border: 1px solid black;
+  padding: .3rem;
+  font-size: .7rem;
+}
+
+.media-upload button:hover {
+  cursor: pointer;
+  color: darkgreen;
+}
+
+.submit {
+  font-size: 1.5rem;
+  background-color: darkgreen;
+  border: 1px solid black;
+  padding: 1rem 1.5rem;
+  color: white;
+  margin: 4rem auto;
+}
+
+.submit:hover {
+  cursor: pointer;
+  background-color: white;
+  color: darkgreen;
+}
 
 
 
