@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getClient } from '../actions/client-actions';
 import '../index.css';
-import { Player } from 'video-react';
 import { Link } from 'react-router-dom';
 import routes from '../routes/routes';
 
