@@ -6,7 +6,5 @@ export default function Header() {
         <section className="header">
             <img src={headerLogo} />
         </section>
-
     )
-
 } 

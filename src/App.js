@@ -5,6 +5,7 @@ import Footer from './components/global/Footer';
 import ClientInfoUpload from './pages/ClientInfoUpload';
 import ClientDetail from './pages/ClientDetail';
 import ClientList from './components/info-upload-form/ClientList';
+import Video from './components/global/Video';
 
 import {
   BrowserRouter as Router,
@@ -20,6 +21,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/clients/:clientId" component={ClientDetail} />
+            <Route exact path="/clients/:clientId/:videoTitle" component={Video} />
             <Route exact path="/clients" component={ClientList} />
             <Route exact path="/upload" component={ClientInfoUpload} />
             <Route exact path="/" component={Landing} />
