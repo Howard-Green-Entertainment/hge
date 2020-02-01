@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Player } from 'video-react';
 import { getClient } from '../../actions/client-actions';
 
-export default function Video({ match: { params: { clientId, videoTitle }}}) {
+export default function Video({ match: { params: { clientName, videoTitle }}}) {
+    const clientNames = clientName.split('-');
+    const firstName = clientNames[0];
+    const lastName = clientNames[1];
+
     let [client, setClient] = useState(null);
     useEffect(() => {
-        getClient(clientId)
+        getClient(firstName, lastName)
             .then(client => {setClient(client)})
-    }, [clientId]);
+    }, [firstName, lastName]);
+    
     if (!client) return (<p>Loading...</p>);
     console.log('client', client);
     console.log('video title', videoTitle);
@@ -23,4 +28,3 @@ export default function Video({ match: { params: { clientId, videoTitle }}}) {
         </div>
     )
 }
-

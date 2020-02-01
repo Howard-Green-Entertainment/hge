@@ -32,7 +32,7 @@ export default function ClientDetail({ match: { params: { clientName } } }) {
     const videos = Object.entries(client.videoUrls);
     const videoLinkList = videos.map(video => {
         return <li key={video[0]}>
-            <Link to={routes.VIDEO.linkPath(client.id, video[0])}>{video[0]}</Link>
+            <Link to={routes.VIDEO.linkPath(clientName, video[0])}>{video[0]}</Link>
             </li>
     })
 
