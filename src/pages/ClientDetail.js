@@ -4,6 +4,8 @@ import '../index.css';
 import { Link } from 'react-router-dom';
 import routes from '../routes/routes';
 import Loader from '../components/global/Loader';
+// import { MdPictureAsPdf, MdMovie, MdLink } from 'react-icons/md';
+import { IoMdVideocam, IoMdDocument, IoIosLink } from 'react-icons/io';
 
 export default function ClientDetail({ match: { params: { clientName } } }) {
     const clientNames = clientName.split('-');
@@ -50,16 +52,33 @@ export default function ClientDetail({ match: { params: { clientName } } }) {
                     <ul>{imageList}</ul>
                 </section>
                 <section className="client-info">
-                    <section className="client-pdfs">
-                        <h3>Documents</h3>
-                        <ul>{pdfList}</ul>
+                    <section className="client-info-row pdfs">
+                        <section className="section-icon">
+                            <IoMdDocument size="100" color="#1bcb2e" />
+                        </section>
+                        <section className="section-content">
+                            <h3>Documents</h3>
+                            <ul>{pdfList}</ul>
+                        </section>
                     </section>
-                    <section className="client-videos">
-                        <h3>Videos</h3>
-                        <ul>{videoLinkList}</ul>
+                    <section className="client-info-row videos">
+                        <section className="section-icon">
+                            <IoMdVideocam size="100" color="#1bcb2e" />
+                        </section>
+                        <section className="section-content">
+                            <h3>Videos</h3>
+                            <ul>{videoLinkList}</ul>
+                        </section>
                     </section>
-                    <h3>External Links</h3>
-                    <ul>{linkList}</ul>
+                    <section className="client-info-row links">
+                        <section className="section-icon">
+                            <IoIosLink size="100" color="#1bcb2e" />
+                        </section>
+                        <section className="section-content">
+                            <h3>External Links</h3>
+                            <ul>{linkList}</ul>
+                        </section>
+                    </section>
                 </section>
             </section>
         </section>

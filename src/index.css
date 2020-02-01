@@ -221,12 +221,18 @@ input, textarea {
   font-size: 3rem;
   margin-block-end: 1rem;
   margin-left: 2.5rem;
+  border-left: .7rem solid#1bcb2e;
+  padding-left: 1rem;
 }
 
-.client-videos li {
-  width: 25rem;
-  list-style: none;
-  padding-bottom: 2rem;
+.client-info-row {
+  display: flex;
+  margin: 0 0 2rem 0;
+  padding: 1.5rem;
+}
+
+.section-icon {
+  padding-right: 3rem;
 }
 
 .image-upload, .video-upload, .pdf-upload {
