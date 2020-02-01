@@ -4,16 +4,26 @@ import '../index.css';
 import { Link } from 'react-router-dom';
 import routes from '../routes/routes';
 
-export default function ClientDetail({ match: { params: { clientId } } }) {
+export default function ClientDetail({ match: { params: { clientName } } }) {
+    console.log('clientId', clientName);
+    const clientNames = clientName.split('-');
+    const firstName = clientNames[0].trim();
+    const lastName = clientNames[1].trim();
+
+    console.log('client Names', clientNames);
+    console.log('first name', firstName);
+    console.log('last name', lastName);
+    const names = [firstName, lastName];
+    console.log('names', names);
 
     let [client, setClient] = useState(null);
 
     useEffect(() => {
-        getClient(clientId)
+        getClient(firstName, lastName)
             .then(client => {
                 setClient(client)
             })
-    }, [clientId]);
+    }, [firstName, lastName]);
 
     if (!client) return (<p>Loading...</p>);
 
@@ -29,7 +39,7 @@ export default function ClientDetail({ match: { params: { clientId } } }) {
     const videos = Object.entries(client.videoUrls);
     const videoLinkList = videos.map(video => {
         return <li key={video[0]}>
-            <Link to={routes.VIDEO.linkPath(clientId, video[0])}>{video[0]}</Link>
+            <Link to={routes.VIDEO.linkPath(client.id, video[0])}>{video[0]}</Link>
             </li>
     })
 

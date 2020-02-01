@@ -1,10 +1,15 @@
 import { clientsRef } from '../config/firebaseRefs';
 
 //gets single client
-export const getClient = async clientId => {
+export const getClient = async (firstName, lastName) => {
     try {
-        const client = await clientsRef.doc(clientId).get();
-        return client.data();
+        const client = await clientsRef.where('clientFirstName', '==', firstName).where('clientLastName', '==', lastName)
+        .get()
+        .then(function(querySnapshot) {
+           return querySnapshot.docs[0].data()
+        });
+        console.log('client', client);
+        return client;
     } catch(error) {
         console.log('client error', error);
     } 
