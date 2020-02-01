@@ -31,7 +31,7 @@ export default class ClientInfoUpload extends PureComponent {
 
     handleChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value.trim()
         })
     }
 

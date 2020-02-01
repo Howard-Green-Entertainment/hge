@@ -18,7 +18,6 @@ export default function ClientList() {
     
     const clientList = clients.map(client => {
         const clientName = `${client.clientFirstName.trim()}-${client.clientLastName.trim()}`;
-        console.log('client name', clientName);
             return <li key={client.id}>
                 <Link to={routes.CLIENT_DETAIL.linkPath(clientName)}><h3>{client.clientFirstName} {client.clientLastName}</h3></Link>
             </li>

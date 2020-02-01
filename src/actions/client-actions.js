@@ -8,7 +8,6 @@ export const getClient = async (firstName, lastName) => {
         .then(function(querySnapshot) {
            return querySnapshot.docs[0].data()
         });
-        console.log('client', client);
         return client;
     } catch(error) {
         console.log('client error', error);

@@ -5,16 +5,9 @@ import { Link } from 'react-router-dom';
 import routes from '../routes/routes';
 
 export default function ClientDetail({ match: { params: { clientName } } }) {
-    console.log('clientId', clientName);
     const clientNames = clientName.split('-');
-    const firstName = clientNames[0].trim();
-    const lastName = clientNames[1].trim();
-
-    console.log('client Names', clientNames);
-    console.log('first name', firstName);
-    console.log('last name', lastName);
-    const names = [firstName, lastName];
-    console.log('names', names);
+    const firstName = clientNames[0];
+    const lastName = clientNames[1];
 
     let [client, setClient] = useState(null);
 
