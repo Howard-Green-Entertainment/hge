@@ -23,3 +23,4 @@ export default function Video({ match: { params: { clientId, videoTitle }}}) {
         </div>
     )
 }
+

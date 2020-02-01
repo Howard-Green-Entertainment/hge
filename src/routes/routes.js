@@ -15,8 +15,13 @@ const routes = {
         component: ClientInfoUpload,
         linkPath: () => '/upload'
     },
+    VIDEO: {
+        path: 'clients/:clientName/:videoTitle',
+        component: Video,
+        linkPath: (clientId, videoTitle) => `/clients/${clientId}/${videoTitle}`
+    },
     CLIENT_DETAIL: {
-        path: 'clients/:clientId',
+        path: 'clients/:clientName',
         component: ClientDetail,
         linkPath: clientId => `clients/${clientId}`
     },
@@ -25,11 +30,6 @@ const routes = {
         component: ClientList,
         linkPath: () => '/clients'
     },
-    VIDEO: {
-        path: 'clients/:clientId/:videoTitle',
-        component: Video,
-        linkPath: (clientId, videoTitle) => `/clients/${clientId}/${videoTitle}`
-    }
 };
 
 export default routes;

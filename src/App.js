@@ -20,8 +20,8 @@ function App() {
       <div className="app-content">
         <Router>
           <Switch>
-            <Route exact path="/clients/:clientId" component={ClientDetail} />
-            <Route exact path="/clients/:clientId/:videoTitle" component={Video} />
+            <Route exact path="/clients/:clientName/:videoTitle" component={Video} />
+            <Route exact path="/clients/:clientName" component={ClientDetail} />
             <Route exact path="/clients" component={ClientList} />
             <Route exact path="/upload" component={ClientInfoUpload} />
             <Route exact path="/" component={Landing} />

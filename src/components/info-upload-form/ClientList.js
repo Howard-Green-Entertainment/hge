@@ -15,10 +15,13 @@ export default function ClientList() {
     }, []);
 
     if(!clients) return ( <p>Loading...</p>)
+
+    console.log('client', clients[0]);
     
     const clientList = clients.map(client => {
+        const clientName = `${client.clientFirstName}-${client.clientLastName}`;
             return <li key={client.id}>
-                <Link to={routes.CLIENT_DETAIL.linkPath(client.id)}><h3>{client.clientFirstName} {client.clientLastName}</h3></Link>
+                <Link to={routes.CLIENT_DETAIL.linkPath(clientName)}><h3>{client.clientFirstName} {client.clientLastName}</h3></Link>
             </li>
         })
     
