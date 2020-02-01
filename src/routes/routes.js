@@ -16,17 +16,17 @@ const routes = {
         linkPath: () => '/upload'
     },
     VIDEO: {
-        path: 'clients/:clientName/:videoTitle',
+        path: '/clients/:clientName/:videoTitle',
         component: Video,
         linkPath: (clientId, videoTitle) => `/clients/${clientId}/${videoTitle}`
     },
     CLIENT_DETAIL: {
-        path: 'clients/:clientName',
+        path: '/clients/:clientName',
         component: ClientDetail,
         linkPath: (clientName) => `clients/${clientName}`
     },
     CLIENTS: {
-        path: 'clients',
+        path: '/clients',
         component: ClientList,
         linkPath: () => '/clients'
     },

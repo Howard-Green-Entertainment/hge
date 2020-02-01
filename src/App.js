@@ -6,6 +6,7 @@ import ClientInfoUpload from './pages/ClientInfoUpload';
 import ClientDetail from './pages/ClientDetail';
 import ClientList from './components/info-upload-form/ClientList';
 import Video from './components/global/Video';
+import routes from './routes/routes';
 
 import {
   BrowserRouter as Router,
@@ -20,11 +21,11 @@ function App() {
       <div className="app-content">
         <Router>
           <Switch>
-            <Route exact path="/clients/:clientName/:videoTitle" component={Video} />
-            <Route exact path="/clients/:clientName" component={ClientDetail} />
-            <Route exact path="/clients" component={ClientList} />
-            <Route exact path="/upload" component={ClientInfoUpload} />
-            <Route exact path="/" component={Landing} />
+            <Route path={routes.VIDEO.path} component={Video} />
+            <Route path={routes.CLIENT_DETAIL.path} component={ClientDetail} />
+            <Route path={routes.CLIENTS.path} component={ClientList} />
+            <Route path={routes.UPLOAD.path} component={ClientInfoUpload} />
+            <Route exact path={routes.LANDING.path} component={Landing} />
           </Switch>
         </Router>
       </div>
