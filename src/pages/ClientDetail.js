@@ -3,6 +3,7 @@ import { getClient } from '../actions/client-actions';
 import '../index.css';
 import { Link } from 'react-router-dom';
 import routes from '../routes/routes';
+import Loader from '../components/global/Loader';
 
 export default function ClientDetail({ match: { params: { clientName } } }) {
     const clientNames = clientName.split('-');
@@ -18,7 +19,7 @@ export default function ClientDetail({ match: { params: { clientName } } }) {
             })
     }, [firstName, lastName]);
 
-    if (!client) return (<p>Loading...</p>);
+    if (!client) return (<Loader />);
 
     const links = Object.entries(client.externalLinks);
     const linkList = links.map(link => {
@@ -26,7 +27,7 @@ export default function ClientDetail({ match: { params: { clientName } } }) {
     })
 
     const imageList = client.imageUrls.map(imageUrl => {
-        return <li key={imageUrl}><a target="blank" href={imageUrl}><img src={imageUrl} alt="" /></a></li>
+        return <li key={imageUrl}><a target="blank" href={imageUrl}><img src={imageUrl} alt={clientName} /></a></li>
     })
 
     const videos = Object.entries(client.videoUrls);

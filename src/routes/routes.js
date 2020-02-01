@@ -23,7 +23,7 @@ const routes = {
     CLIENT_DETAIL: {
         path: '/clients/:clientName',
         component: ClientDetail,
-        linkPath: (clientName) => `clients/${clientName}`
+        linkPath: (clientName) => `/clients/${clientName}`
     },
     CLIENTS: {
         path: '/clients',

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllClients } from '../../actions/client-actions';
 import routes from '../../routes/routes'
+import Loader from '../global/Loader';
 
 export default function ClientList() {
 
@@ -14,7 +15,7 @@ export default function ClientList() {
         })
     }, []);
 
-    if(!clients) return ( <p>Loading...</p>)
+    if(!clients) return (<Loader />)
     
     const clientList = clients.map(client => {
         const clientName = `${client.clientFirstName.trim()}-${client.clientLastName.trim()}`;

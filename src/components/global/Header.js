@@ -4,7 +4,7 @@ import headerLogo from '../../assets/hge-logo.png';
 export default function Header() {
     return (
         <section className="header">
-            <img src={headerLogo} />
+            <img src={headerLogo} alt="Howard Green Entertainment Logo" />
         </section>
     )
 } 
