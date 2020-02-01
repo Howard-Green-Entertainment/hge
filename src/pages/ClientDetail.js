@@ -28,6 +28,8 @@ export default function ClientDetail({ match: { params: { clientName } } }) {
         return <li key={link[0]}><a target="blank" href={link[1]}>{link[0]}</a></li>
     })
 
+    const featureImage = client.imageUrls.shift();
+
     const imageList = client.imageUrls.map(imageUrl => {
         return <li key={imageUrl}><a target="blank" href={imageUrl}><img src={imageUrl} alt={clientName} /></a></li>
     })
@@ -49,7 +51,7 @@ export default function ClientDetail({ match: { params: { clientName } } }) {
             <h1 className="client-h1">{client.clientFirstName} {client.clientLastName}</h1>
             <section className="client-detail">
                 <section className="client-images">
-                    <ul>{imageList}</ul>
+                <a target="blank" href={featureImage}><img src={featureImage} alt={clientName} /></a>
                 </section>
                 <section className="client-info">
                     <section className="client-info-row pdfs">
@@ -80,6 +82,9 @@ export default function ClientDetail({ match: { params: { clientName } } }) {
                         </section>
                     </section>
                 </section>
+            </section>
+            <section className="client-images-thumbs">
+                <ul>{imageList}</ul>   
             </section>
         </section>
     )
