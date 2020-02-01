@@ -235,3 +235,16 @@ input, textarea {
   display: flex;
   flex-direction: column;
 }
+
+.video-container {
+  width: 80%;
+  margin: auto;
+}
+
+.video-header {
+  margin: 2rem 0;
+}
+
+.client-name {
+  color: #1bcb2e;
+}
