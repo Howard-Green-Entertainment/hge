@@ -21,10 +21,10 @@ function App() {
       <div className="app-content">
         <Router>
           <Switch>
-            <Route path={routes.VIDEO.path} component={Video} />
-            <Route path={routes.CLIENT_DETAIL.path} component={ClientDetail} />
-            <Route path={routes.CLIENTS.path} component={ClientList} />
-            <Route path={routes.UPLOAD.path} component={ClientInfoUpload} />
+            <Route exact path={routes.UPLOAD.path} component={ClientInfoUpload} />
+            <Route exact path={routes.CLIENTS.path} component={ClientList} />
+            <Route exact path={routes.VIDEO.path} component={Video} />
+            <Route exact path={routes.CLIENT_DETAIL.path} component={ClientDetail} />
             <Route exact path={routes.LANDING.path} component={Landing} />
           </Switch>
         </Router>
