@@ -117,6 +117,7 @@ export default class ClientInfoUpload extends PureComponent {
         e.preventDefault();
         const client = this.state;
         addClient(client);
+        this.props.history.push('/clients');
     }
 
     render() {
